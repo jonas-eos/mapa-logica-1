@@ -63,5 +63,5 @@ fimfuncao
 
 {*----------------------------------------------------------------------------*}
 inicio
-
+    pecorrerTabuleiro(PREENCHER)
 fimalgoritmo
