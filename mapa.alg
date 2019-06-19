@@ -12,12 +12,13 @@ const
    SAIDA = "S"
    PREENCHER = 1
    MOSTRAR = 2
+   ATRIBUIR_STATUS = 3
 
-   {*----------------------------------------------------------------------------*}
+{*----------------------------------------------------------------------------*}
 var
    tabuleiro : vetor[POSICAO_INICIAL..LINHAS,POSICAO_INICIAL..COLUNAS] de caracter
 
-   {*----------------------------------------------------------------------------*}
+{*----------------------------------------------------------------------------*}
 procedimento pecorrerTabuleiro(operacao : inteiro)
 var
    linha, coluna : inteiro
@@ -32,6 +33,8 @@ inicio
             preencherComX(linha, coluna)
          caso MOSTRAR
             proximaLinha <- exibirTabuleiro(linha, coluna, proximaLinha)
+         caso ATRIBUIR_STATUS
+            preencherDeAcordoComMapa(linha,coluna)
          fimescolha
       fimpara
       proximaLinha <- verdadeiro
@@ -51,6 +54,31 @@ inicio
 fimprocedimento
 
 {*----------------------------------------------------------------------------*}
+procedimento preencherDeAcordoComMapa(linha, coluna : inteiro)
+var
+   preencher : logico
+inicio
+   preencher <- falso
+   escolha(linha)
+   caso 2
+      se(coluna > 2) e (coluna < 6) entao
+         preencher <- verdadeiro
+      fimse
+   caso 3
+      se(coluna > 1) e (coluna < 6) e (coluna <> 4) entao
+         preencher <- verdadeiro
+      fimse
+   caso 4, 5
+      se(coluna = 2) ou (coluna = 5) entao
+         preencher <- verdadeiro
+      fimse
+   fimescolha
+   se(preencher) entao
+      definirStatusDoCampo(linha,coluna,LIVRE)
+   fimse
+fimprocedimento
+
+{*----------------------------------------------------------------------------*}
 funcao exibirTabuleiro(linha, coluna : inteiro; proximaLinha : logico) : logico
 inicio
    se(proximaLinha) entao
@@ -65,16 +93,7 @@ fimfuncao
 inicio
    pecorrerTabuleiro(PREENCHER)
    pecorrerTabuleiro(MOSTRAR)
-   definirStatusDoCampo(2,3,LIVRE)
-   definirStatusDoCampo(2,4,LIVRE)
-   definirStatusDoCampo(2,5,LIVRE)
-   definirStatusDoCampo(3,2,LIVRE)
-   definirStatusDoCampo(3,3,LIVRE)
-   definirStatusDoCampo(3,4,LIVRE)
-   definirStatusDoCampo(4,2,LIVRE)
-   definirStatusDoCampo(4,5,LIVRE)
    definirStatusDoCampo(5,1,ENTRADA)
-   definirStatusDoCampo(5,2,LIVRE)
-   definirStatusDoCampo(5,5,LIVRE)
    definirStatusDoCampo(5,6,SAIDA)
+   pecorrerTabuleiro(ATRIBUIR_STATUS)
 fimalgoritmo
