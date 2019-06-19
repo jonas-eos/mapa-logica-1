@@ -6,10 +6,10 @@ const
    POSICAO_FINAL = 6
    LINHAS = 6
    COLUNAS = 6
-   BLOQUEADO = "X"
-   LIVRE = " "
-   ENTRADA = "E"
-   SAIDA = "S"
+   BLOQUEADO = " X "
+   LIVRE = "   "
+   ENTRADA = " E "
+   SAIDA = " S "
    PREENCHER = 1
    MOSTRAR = 2
    ATRIBUIR_STATUS = 3
@@ -79,13 +79,39 @@ inicio
 fimprocedimento
 
 {*----------------------------------------------------------------------------*}
+procedimento desenharLinhas()
+var
+   i, j: inteiro
+inicio
+   para i de 1 ate 6 faca
+      escreva("+---")
+   fimpara
+   escreval("+")
+fimprocedimento
+
+{*----------------------------------------------------------------------------*}
+procedimento desenharDivisoria()
+inicio
+   escreva("|")
+fimprocedimento
+
+{*----------------------------------------------------------------------------*}
 funcao exibirTabuleiro(linha, coluna : inteiro; proximaLinha : logico) : logico
 inicio
    se(proximaLinha) entao
       escreval("")
       proximaLinha <- falso
+      desenharLinhas()
    fimse
+   desenharDivisoria()
    escreva(tabuleiro[linha,coluna])
+   se(coluna = 6) entao
+      desenharDivisoria()
+   fimse
+   se(linha = 6) e (coluna = 6) entao
+      escreval("")
+      desenharLinhas()
+   fimse
    retorne proximaLinha
 fimfuncao
 
