@@ -29,8 +29,6 @@ inicio
 fimprocedimento
 
 {*----------------------------------------------------------------------------*}
-{* b) Crie uma função que receba os parâmetros da posição e do caracter a ser prenchido: [ E ] , [   ] ou  [ S ]. *}
-{* TODO: *}
 procedimento definirStatusDoCampo(linha, coluna : inteiro; status : caracter)
 inicio
    tabuleiro[linha,coluna] <- status
