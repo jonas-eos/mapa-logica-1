@@ -13,7 +13,20 @@ const
 
 {*----------------------------------------------------------------------------*}
 var
-   tabuleiro : vetor[POSICAO_INICIAL..LINHAS,POSICAO_INICIAL..COLUNAS] de caracter
+   tabuleiro : vetor[POSICAO_INICIAL..LINHAS,POSICAO_INICIAL..COLUNAS] de string
+
+{*----------------------------------------------------------------------------*}
+procedimento preencherComX()
+var
+   linha, coluna : inteiro
+
+inicio
+   para linha de POSICAO_INICIAL ate LINHAS faca
+      para coluna de  POSICAO_INICIAL ate COLUNAS faca
+         tabuleiro[linha,coluna] <- BLOQUEADO
+      fimpara
+   fimpara
+fimprocedimento
 
 {*----------------------------------------------------------------------------*}
 inicio
