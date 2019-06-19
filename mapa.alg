@@ -13,11 +13,11 @@ const
    PREENCHER = 1
    MOSTRAR = 2
 
-{*----------------------------------------------------------------------------*}
+   {*----------------------------------------------------------------------------*}
 var
    tabuleiro : vetor[POSICAO_INICIAL..LINHAS,POSICAO_INICIAL..COLUNAS] de caracter
 
-{*----------------------------------------------------------------------------*}
+   {*----------------------------------------------------------------------------*}
 procedimento pecorrerTabuleiro(operacao : inteiro)
 var
    linha, coluna : inteiro
@@ -28,10 +28,10 @@ inicio
    para linha de POSICAO_INICIAL ate LINHAS faca
       para coluna de  POSICAO_INICIAL ate COLUNAS faca
          escolha(operacao)
-            caso PREENCHER
-               preencherComX(linha, coluna)
-            caso MOSTRAR
-               proximaLinha <- exibirTabuleiro(linha, coluna, proximaLinha)
+         caso PREENCHER
+            preencherComX(linha, coluna)
+         caso MOSTRAR
+            proximaLinha <- exibirTabuleiro(linha, coluna, proximaLinha)
          fimescolha
       fimpara
       proximaLinha <- verdadeiro
@@ -63,6 +63,18 @@ fimfuncao
 
 {*----------------------------------------------------------------------------*}
 inicio
-    pecorrerTabuleiro(PREENCHER)
-    pecorrerTabuleiro(MOSTRAR)
+   pecorrerTabuleiro(PREENCHER)
+   pecorrerTabuleiro(MOSTRAR)
+   definirStatusDoCampo(2,3,LIVRE)
+   definirStatusDoCampo(2,4,LIVRE)
+   definirStatusDoCampo(2,5,LIVRE)
+   definirStatusDoCampo(3,2,LIVRE)
+   definirStatusDoCampo(3,3,LIVRE)
+   definirStatusDoCampo(3,4,LIVRE)
+   definirStatusDoCampo(4,2,LIVRE)
+   definirStatusDoCampo(4,5,LIVRE)
+   definirStatusDoCampo(5,1,ENTRADA)
+   definirStatusDoCampo(5,2,LIVRE)
+   definirStatusDoCampo(5,5,LIVRE)
+   definirStatusDoCampo(5,6,SAIDA)
 fimalgoritmo
