@@ -24,7 +24,7 @@ var
    proximaLinha : logico
 
 inicio
-   proximaLinha <- falso
+   proximaLinha <- verdadeiro
    para linha de POSICAO_INICIAL ate LINHAS faca
       para coluna de  POSICAO_INICIAL ate COLUNAS faca
          escolha(operacao)
