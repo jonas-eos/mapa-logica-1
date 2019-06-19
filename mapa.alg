@@ -35,6 +35,19 @@ inicio
 fimprocedimento
 
 {*----------------------------------------------------------------------------*}
+procedimento exibirTabuleiro()
+var
+   linha, coluna : inteiro
+
+inicio
+   para linha de POSICAO_INICIAL ate LINHAS faca
+      para coluna de  POSICAO_INICIAL ate COLUNAS faca
+         escreva(tabuleiro[linha,coluna])
+      fimpara
+         escreval("")
+   fimpara
+fimprocedimento
+{*----------------------------------------------------------------------------*}
 inicio
 
 fimalgoritmo
