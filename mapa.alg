@@ -13,7 +13,7 @@ const
 
 {*----------------------------------------------------------------------------*}
 var
-   tabuleiro : vetor[POSICAO_INICIAL..LINHAS,POSICAO_INICIAL..COLUNAS] de string
+   tabuleiro : vetor[POSICAO_INICIAL..LINHAS,POSICAO_INICIAL..COLUNAS] de caracter
 
 {*----------------------------------------------------------------------------*}
 procedimento preencherComX()
