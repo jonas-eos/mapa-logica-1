@@ -10,22 +10,38 @@ const
    LIVRE = " "
    ENTRADA = "E"
    SAIDA = "S"
+   PREENCHER = 1
+   MOSTRAR = 2
 
 {*----------------------------------------------------------------------------*}
 var
    tabuleiro : vetor[POSICAO_INICIAL..LINHAS,POSICAO_INICIAL..COLUNAS] de caracter
 
 {*----------------------------------------------------------------------------*}
-procedimento preencherComX()
+procedimento pecorrerTabuleiro(operacao : inteiro)
 var
    linha, coluna : inteiro
+   proximaLinha : logico
 
 inicio
+   proximaLinha <- falso
    para linha de POSICAO_INICIAL ate LINHAS faca
       para coluna de  POSICAO_INICIAL ate COLUNAS faca
-         tabuleiro[linha,coluna] <- BLOQUEADO
+         escolha(operacao)
+            caso PREENCHER
+               preencherComX(linha, coluna)
+            caso MOSTRAR
+               proximaLinha <- exibirTabuleiro(linha, coluna, proximaLinha)
+         fimescolha
       fimpara
+      proximaLinha <- verdadeiro
    fimpara
+fimprocedimento
+
+{*----------------------------------------------------------------------------*}
+procedimento preencherComX(linha, coluna : inteiro)
+inicio
+   tabuleiro[linha, coluna] <- BLOQUEADO
 fimprocedimento
 
 {*----------------------------------------------------------------------------*}
@@ -35,18 +51,16 @@ inicio
 fimprocedimento
 
 {*----------------------------------------------------------------------------*}
-procedimento exibirTabuleiro()
-var
-   linha, coluna : inteiro
-
+funcao exibirTabuleiro(linha, coluna : inteiro; proximaLinha : logico) : logico
 inicio
-   para linha de POSICAO_INICIAL ate LINHAS faca
-      para coluna de  POSICAO_INICIAL ate COLUNAS faca
-         escreva(tabuleiro[linha,coluna])
-      fimpara
-         escreval("")
-   fimpara
-fimprocedimento
+   se(proximaLinha) entao
+      escreval("")
+      proximaLinha <- falso
+   fimse
+   escreva(tabuleiro[linha,coluna])
+   retorne proximaLinha
+fimfuncao
+
 {*----------------------------------------------------------------------------*}
 inicio
 
