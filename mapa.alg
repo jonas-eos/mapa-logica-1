@@ -17,6 +17,7 @@ const
 {*----------------------------------------------------------------------------*}
 var
    tabuleiro : vetor[POSICAO_INICIAL..LINHAS,POSICAO_INICIAL..COLUNAS] de caracter
+   enter : caracter
 
 {*----------------------------------------------------------------------------*}
 procedimento pecorrerTabuleiro(operacao : inteiro)
@@ -122,4 +123,7 @@ inicio
    definirStatusDoCampo(5,1,ENTRADA)
    definirStatusDoCampo(5,6,SAIDA)
    pecorrerTabuleiro(ATRIBUIR_STATUS)
+   escreval("Aperte enter para exibir o próximo status do tabuleiro")
+   leia(enter)
+   pecorrerTabuleiro(MOSTRAR)
 fimalgoritmo
