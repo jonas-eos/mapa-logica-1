@@ -95,6 +95,12 @@ inicio
 fimfuncao
 
 {*----------------------------------------------------------------------------*}
+funcao anteriorDe(indice : inteiro) : inteiro
+inicio
+   retorne indice - 1;
+fimfuncao
+
+{*----------------------------------------------------------------------------*}
 {* TODO: Adicionar constantes *}
 {* TODO: Criar subrotina para avaliar se é primeiraLinha *}
 {* TODO: Eliminar código repetido *}
@@ -106,7 +112,7 @@ inicio
       se(ehPrimeiraOuUltimaLinha(linha)) entao
          escreva("+---")
       senao
-         se(campoBloqueado(linha,coluna)) ou (tabuleiro[linha - 1,coluna] = BLOQUEADO) entao
+         se (campoBloqueado(linha,coluna) ou campoBloqueado(anteriorDe(linha),coluna)) entao
             escreva("+---")
          senao
             escreva("+   ")
@@ -119,14 +125,13 @@ fimprocedimento
 {*----------------------------------------------------------------------------*}
 {* TODO: Adicionar constantes *}
 {* TODO: Eliminar Código repetido *}
-{* TODO: Criar sub-rotina para validar se é ultima coluna *}
 {* TODO: O código ainda pode ser melhorado *}
 procedimento desenharDivisoria(linha, coluna : inteiro; ultimaDivisoria : logico)
 inicio
    se(ultimaDivisoria) ou (coluna = 1) entao
       escreva("|")
    senao
-      se(campoBloqueado(linha,coluna)) ou (tabuleiro[linha,coluna - 1] = BLOQUEADO) entao
+      se(campoBloqueado(linha,coluna) ou campoBloqueado(linha,anteriorDe(coluna))) entao
          escreva("|")
       senao
          escreva(" ")
