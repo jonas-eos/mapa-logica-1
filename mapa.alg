@@ -147,6 +147,16 @@ inicio
 fimfuncao
 
 {*----------------------------------------------------------------------------*}
+funcao ehUltima(indice : inteiro) : logico
+inicio
+   se indice = POSICAO_FINAL entao
+      retorne verdadeiro
+   senao
+      retorne falso
+   fimse
+fimfuncao
+
+{*----------------------------------------------------------------------------*}
 {* TODO: Reavaliar melhorias para este bloco *}
 procedimento exibirTabuleiro(linha, coluna : inteiro; var proximaLinha : logico)
 inicio
@@ -160,7 +170,7 @@ inicio
       desenharDivisoria(linha,coluna, verdadeiro)
       escreval("")
    fimse
-   se (linha = 6) e (coluna = 6) entao
+   se (ehUltima(linha)) e (ehUltima(coluna)) entao
       desenharLinhas(linha)
    fimse
 fimprocedimento
