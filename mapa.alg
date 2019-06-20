@@ -14,12 +14,12 @@ const
    OP_MOSTRAR = 2
    OP_ATRIBUIR_STATUS = 3
 
-{*----------------------------------------------------------------------------*}
+   {*----------------------------------------------------------------------------*}
 var
    tabuleiro : vetor[POSICAO_INICIAL..POSICAO_FINAL,POSICAO_INICIAL..POSICAO_FINAL] de caracter
    enter : caracter
 
-{*----------------------------------------------------------------------------*}
+   {*----------------------------------------------------------------------------*}
 procedimento pecorrerTabuleiro(operacao : inteiro)
 var
    linha, coluna : inteiro
@@ -94,26 +94,24 @@ fimfuncao
 {*----------------------------------------------------------------------------*}
 funcao anteriorDe(indice : inteiro) : inteiro
 inicio
-   retorne indice - 1;
+   se (ehPrimeira(indice)) entao
+      retorne indice;
+   senao
+      retorne indice - 1;
+   fimse
 fimfuncao
 
 {*----------------------------------------------------------------------------*}
-{* TODO: Adicionar constantes *}
-{* TODO: Criar subrotina para avaliar se é primeiraLinha *}
-{* TODO: Eliminar código repetido *}
 procedimento desenharLinhas(linha : inteiro)
 var
    coluna: inteiro
+
 inicio
-   para coluna de 1 ate 6 faca
-      se(primeiroOuUltimo(linha)) entao
+   para coluna de POSICAO_INICIAL ate POSICAO_FINAL faca
+      se (campoBloqueado(linha,coluna) ou campoBloqueado(anteriorDe(linha),coluna)) entao
          escreva("+---")
       senao
-         se (campoBloqueado(linha,coluna) ou campoBloqueado(anteriorDe(linha),coluna)) entao
-            escreva("+---")
-         senao
-            escreva("+   ")
-         fimse
+         escreva("+   ")
       fimse
    fimpara
    escreval("+")
@@ -157,6 +155,16 @@ inicio
 fimfuncao
 
 {*----------------------------------------------------------------------------*}
+funcao ehPrimeira(indice : inteiro) : logico
+inicio
+   se indice = POSICAO_INICIAL entao
+      retorne verdadeiro
+   senao
+      retorne falso
+   fimse
+fimfuncao
+
+{*----------------------------------------------------------------------------*}
 {* TODO: Reavaliar melhorias para este bloco *}
 procedimento exibirTabuleiro(linha, coluna : inteiro; var proximaLinha : logico)
 inicio
@@ -166,7 +174,7 @@ inicio
    fimse
    desenharDivisoria(linha, coluna, falso)
    escreva(tabuleiro[linha,coluna])
-   se (coluna  =  ) entao
+   se (ehUltima(coluna)) entao
       desenharDivisoria(linha,coluna, verdadeiro)
       escreval("")
    fimse
