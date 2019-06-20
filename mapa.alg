@@ -4,8 +4,6 @@ algoritmo "algoritmo_logica1"
 const
    POSICAO_INICIAL = 1
    POSICAO_FINAL = 6
-   LINHAS = 6
-   COLUNAS = 6
    BLOQUEADO = " X "
    LIVRE = "   "
    ENTRADA = " E "
@@ -14,12 +12,12 @@ const
    OP_MOSTRAR = 2
    OP_ATRIBUIR_STATUS = 3
 
-   {*----------------------------------------------------------------------------*}
+{*----------------------------------------------------------------------------*}
 var
    tabuleiro : vetor[POSICAO_INICIAL..POSICAO_FINAL,POSICAO_INICIAL..POSICAO_FINAL] de caracter
    enter : caracter
 
-   {*----------------------------------------------------------------------------*}
+{*----------------------------------------------------------------------------*}
 procedimento pecorrerTabuleiro(operacao : inteiro)
 var
    linha, coluna : inteiro
@@ -55,11 +53,10 @@ inicio
 fimprocedimento
 
 {*----------------------------------------------------------------------------*}
-{* TODO: Avaliar possibilidade de adicionar constantes *}
-{* TODO: Avaliar possibilidade de eliminar codigo repetido *}
 procedimento preencherDeAcordoComMapa(linha, coluna : inteiro)
 var
    preencher : logico
+   
 inicio
    preencher <- falso
    escolha(linha)
@@ -127,16 +124,6 @@ inicio
       fimse
 fimprocedimento
 
-{* --------------------------------------------------------------------------{*}
-funcao primeiroOuUltimo(indice : inteiro) : logico
-inicio
-   se ((indice = POSICAO_INICIAL) ou (indice = POSICAO_FINAL)) entao
-      retorne verdadeiro
-   senao
-      retorne falso
-   fimse
-fimfuncao
-
 {*----------------------------------------------------------------------------*}
 funcao ehUltima(indice : inteiro) : logico
 inicio
@@ -181,7 +168,6 @@ inicio
 fimprocedimento
 
 {*----------------------------------------------------------------------------*}
-{* TODO: Adicionar constantes *}
 inicio
    escreval("")
    pecorrerTabuleiro(OP_BLOQUEAR)
