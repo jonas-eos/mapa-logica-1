@@ -106,7 +106,7 @@ var
    coluna: inteiro
 inicio
    para coluna de 1 ate 6 faca
-      se(ehPrimeiraOuUltimaLinha(linha)) entao
+      se(primeiroOuUltimo(linha)) entao
          escreva("+---")
       senao
          se (campoBloqueado(linha,coluna) ou campoBloqueado(anteriorDe(linha),coluna)) entao
@@ -137,10 +137,9 @@ inicio
 fimprocedimento
 
 {* --------------------------------------------------------------------------{*}
-{* TODO: reavaliar código para velhorar *}
-funcao ehPrimeiraOuUltimaLinha(linha : inteiro) : logico
+funcao primeiroOuUltimo(indice : inteiro) : logico
 inicio
-   se ((linha = POSICAO_INICIAL) ou (linha = POSICAO_FINAL)) entao
+   se ((indice = POSICAO_INICIAL) ou (indice = POSICAO_FINAL)) entao
       retorne verdadeiro
    senao
       retorne falso
@@ -157,7 +156,7 @@ inicio
    fimse
    desenharDivisoria(linha, coluna, falso)
    escreva(tabuleiro[linha,coluna])
-   se (coluna  = 6 ) entao
+   se (coluna  =  ) entao
       desenharDivisoria(linha,coluna, verdadeiro)
       escreval("")
    fimse
