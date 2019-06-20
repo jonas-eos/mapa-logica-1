@@ -10,9 +10,9 @@ const
    LIVRE = "   "
    ENTRADA = " E "
    SAIDA = " S "
-   PREENCHER = 1
-   MOSTRAR = 2
-   ATRIBUIR_STATUS = 3
+   OP_PREENCHER = 1
+   OP_MOSTRAR = 2
+   OP_ATRIBUIR_STATUS = 3
 
 {*----------------------------------------------------------------------------*}
 var
@@ -28,16 +28,14 @@ var
 
 inicio
    proximaLinha <- verdadeiro
-   para linha de POSICAO_INICIAL ate LINHAS faca
-      para coluna de  POSICAO_INICIAL ate COLUNAS faca
-         se coluna = 6 entao
-         fimse
+   para linha de POSICAO_INICIAL ate POSICAO_FINAL faca
+      para coluna de  POSICAO_INICIAL ate POSICAO_FINAL faca
          escolha(operacao)
-         caso PREENCHER
+         caso OP_PREENCHER
             preencherComX(linha, coluna)
-         caso MOSTRAR
+         caso OP_MOSTRAR
             exibirTabuleiro(linha, coluna, proximaLinha)
-         caso ATRIBUIR_STATUS
+         caso OP_ATRIBUIR_STATUS
             preencherDeAcordoComMapa(linha,coluna)
          fimescolha
       fimpara
@@ -173,12 +171,12 @@ fimprocedimento
 {* TODO: Adicionar constantes *}
 inicio
    escreval("")
-   pecorrerTabuleiro(PREENCHER)
-   pecorrerTabuleiro(MOSTRAR)
+   pecorrerTabuleiro(OP_PREENCHER)
+   pecorrerTabuleiro(OP_MOSTRAR)
    definirStatusDoCampo(5,1,ENTRADA)
    definirStatusDoCampo(5,6,SAIDA)
-   pecorrerTabuleiro(ATRIBUIR_STATUS)
+   pecorrerTabuleiro(OP_ATRIBUIR_STATUS)
    escreval("Aperte enter para exibir o próximo status do tabuleiro")
    leia(enter)
-   pecorrerTabuleiro(MOSTRAR)
+   pecorrerTabuleiro(OP_MOSTRAR)
 fimalgoritmo
