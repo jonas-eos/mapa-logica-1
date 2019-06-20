@@ -20,6 +20,7 @@ var
    enter : caracter
 
 {*----------------------------------------------------------------------------*}
+{* TODO: Avaliar se pode melhorar este bloco de subrotina *}
 procedimento pecorrerTabuleiro(operacao : inteiro)
 var
    linha, coluna : inteiro
@@ -29,11 +30,13 @@ inicio
    proximaLinha <- verdadeiro
    para linha de POSICAO_INICIAL ate LINHAS faca
       para coluna de  POSICAO_INICIAL ate COLUNAS faca
+         se coluna = 6 entao
+         fimse
          escolha(operacao)
          caso PREENCHER
             preencherComX(linha, coluna)
          caso MOSTRAR
-            proximaLinha <- exibirTabuleiro(linha, coluna, proximaLinha)
+            exibirTabuleiro(linha, coluna, proximaLinha)
          caso ATRIBUIR_STATUS
             preencherDeAcordoComMapa(linha,coluna)
          fimescolha
@@ -55,6 +58,8 @@ inicio
 fimprocedimento
 
 {*----------------------------------------------------------------------------*}
+{* TODO: Avaliar possibilidade de adicionar constantes *}
+{* TODO: Avaliar possibilidade de eliminar codigo repetido *}
 procedimento preencherDeAcordoComMapa(linha, coluna : inteiro)
 var
    preencher : logico
@@ -80,43 +85,77 @@ inicio
 fimprocedimento
 
 {*----------------------------------------------------------------------------*}
-procedimento desenharLinhas()
+{* TODO: Adicionar constantes *}
+{* TODO: Criar subrotina para avaliar se é primeiraLinha *}
+{* TODO: Eliminar código repetido *}
+procedimento desenharLinhas(linha : inteiro)
 var
-   i, j: inteiro
+   coluna: inteiro
 inicio
-   para i de 1 ate 6 faca
-      escreva("+---")
+   para coluna de 1 ate 6 faca
+      se(ehPrimeiraOuUltimaLinha(linha)) entao
+         escreva("+---")
+      senao
+         se(tabuleiro[linha,coluna] = BLOQUEADO) ou (tabuleiro[linha - 1,coluna] = BLOQUEADO) entao
+            escreva("+---")
+         senao
+            escreva("+   ")
+         fimse
+      fimse
    fimpara
    escreval("+")
 fimprocedimento
 
 {*----------------------------------------------------------------------------*}
-procedimento desenharDivisoria()
+{* TODO: Adicionar constantes *}
+{* TODO: Eliminar Código repetido *}
+{* TODO: Criar sub-rotina para validar se é ultima coluna *}
+{* TODO: O código ainda pode ser melhorado *}
+procedimento desenharDivisoria(linha, coluna : inteiro; ultimaDivisoria : logico)
 inicio
-   escreva("|")
+   se(ultimaDivisoria) ou (coluna = 1) entao
+      escreva("|")
+   senao
+      se(tabuleiro[linha,coluna] = BLOQUEADO) ou (tabuleiro[linha,coluna - 1] = BLOQUEADO) entao
+         escreva("|")
+      senao
+         escreva(" ")
+      fimse
+   fimse
 fimprocedimento
 
-{*----------------------------------------------------------------------------*}
-funcao exibirTabuleiro(linha, coluna : inteiro; proximaLinha : logico) : logico
+{* --------------------------------------------------------------------------{*}
+{* TODO: reavaliar código para velhorar *}
+funcao ehPrimeiraOuUltimaLinha(linha : inteiro) : logico
 inicio
-   se(proximaLinha) entao
-      escreval("")
-      proximaLinha <- falso
-      desenharLinhas()
+   se ((linha = POSICAO_INICIAL) ou (linha = POSICAO_FINAL)) entao
+      retorne verdadeiro
+   senao
+      retorne falso
    fimse
-   desenharDivisoria()
-   escreva(tabuleiro[linha,coluna])
-   se(coluna = 6) entao
-      desenharDivisoria()
-   fimse
-   se(linha = 6) e (coluna = 6) entao
-      escreval("")
-      desenharLinhas()
-   fimse
-   retorne proximaLinha
 fimfuncao
 
 {*----------------------------------------------------------------------------*}
+{* TODO: Reavaliar melhorias para este bloco *}
+procedimento exibirTabuleiro(linha, coluna : inteiro; var proximaLinha : logico)
+inicio
+   se (proximaLinha) entao
+      desenharLinhas(linha)
+      proximaLinha <- falso
+   fimse
+   desenharDivisoria(linha, coluna, falso)
+   escreva(tabuleiro[linha,coluna])
+   se (coluna  = 6 ) entao
+      desenharDivisoria(linha,coluna, verdadeiro)
+      escreval("")
+   fimse
+   se (linha = 6) e (coluna = 6) entao
+      desenharLinhas(linha)
+   fimse
+fimprocedimento
+
+{*----------------------------------------------------------------------------*}
+{* TODO: Adicionar constantes *}
 inicio
    pecorrerTabuleiro(PREENCHER)
    pecorrerTabuleiro(MOSTRAR)
