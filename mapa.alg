@@ -158,17 +158,21 @@ inicio
 fimfuncao
 
 {*----------------------------------------------------------------------------*}
-{* TODO: Reavaliar melhorias para este bloco *}
 procedimento exibirTabuleiro(linha, coluna : inteiro; var proximaLinha : logico)
+var
+   ultimaDivisoria : logico
+   
 inicio
+   ultimaDivisoria <- falso
    se (proximaLinha) entao
       desenharLinhas(linha)
       proximaLinha <- falso
    fimse
-   desenharDivisoria(linha, coluna, falso)
+   desenharDivisoria(linha, coluna, ultimaDivisoria)
    escreva(tabuleiro[linha,coluna])
    se (ehUltima(coluna)) entao
-      desenharDivisoria(linha,coluna, verdadeiro)
+      ultimaDivisoria <- verdadeiro
+      desenharDivisoria(linha,coluna, ultimaDivisoria)
       escreval("")
    fimse
    se (ehUltima(linha)) e (ehUltima(coluna)) entao
