@@ -85,6 +85,16 @@ inicio
 fimprocedimento
 
 {*----------------------------------------------------------------------------*}
+funcao campoBloqueado(linha, coluna : inteiro) : logico
+inicio
+   se(tabuleiro[linha,coluna] = BLOQUEADO) entao
+      retorne verdadeiro
+   senao
+      retorne falso
+   fimse
+fimfuncao
+
+{*----------------------------------------------------------------------------*}
 {* TODO: Adicionar constantes *}
 {* TODO: Criar subrotina para avaliar se é primeiraLinha *}
 {* TODO: Eliminar código repetido *}
@@ -96,7 +106,7 @@ inicio
       se(ehPrimeiraOuUltimaLinha(linha)) entao
          escreva("+---")
       senao
-         se(tabuleiro[linha,coluna] = BLOQUEADO) ou (tabuleiro[linha - 1,coluna] = BLOQUEADO) entao
+         se(campoBloqueado(linha,coluna)) ou (tabuleiro[linha - 1,coluna] = BLOQUEADO) entao
             escreva("+---")
          senao
             escreva("+   ")
@@ -116,7 +126,7 @@ inicio
    se(ultimaDivisoria) ou (coluna = 1) entao
       escreva("|")
    senao
-      se(tabuleiro[linha,coluna] = BLOQUEADO) ou (tabuleiro[linha,coluna - 1] = BLOQUEADO) entao
+      se(campoBloqueado(linha,coluna)) ou (tabuleiro[linha,coluna - 1] = BLOQUEADO) entao
          escreva("|")
       senao
          escreva(" ")
@@ -157,6 +167,7 @@ fimprocedimento
 {*----------------------------------------------------------------------------*}
 {* TODO: Adicionar constantes *}
 inicio
+   escreval("")
    pecorrerTabuleiro(PREENCHER)
    pecorrerTabuleiro(MOSTRAR)
    definirStatusDoCampo(5,1,ENTRADA)
