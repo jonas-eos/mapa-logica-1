@@ -10,7 +10,7 @@ const
    LIVRE = "   "
    ENTRADA = " E "
    SAIDA = " S "
-   OP_PREENCHER = 1
+   OP_BLOQUEAR = 1
    OP_MOSTRAR = 2
    OP_ATRIBUIR_STATUS = 3
 
@@ -31,8 +31,8 @@ inicio
    para linha de POSICAO_INICIAL ate POSICAO_FINAL faca
       para coluna de  POSICAO_INICIAL ate POSICAO_FINAL faca
          escolha(operacao)
-         caso OP_PREENCHER
-            preencherComX(linha, coluna)
+         caso OP_BLOQUEAR
+            bloquarTodosOsCampos(linha, coluna)
          caso OP_MOSTRAR
             exibirTabuleiro(linha, coluna, proximaLinha)
          caso OP_ATRIBUIR_STATUS
@@ -44,7 +44,7 @@ inicio
 fimprocedimento
 
 {*----------------------------------------------------------------------------*}
-procedimento preencherComX(linha, coluna : inteiro)
+procedimento bloquarTodosOsCampos(linha, coluna : inteiro)
 inicio
    tabuleiro[linha, coluna] <- BLOQUEADO
 fimprocedimento
@@ -171,7 +171,7 @@ fimprocedimento
 {* TODO: Adicionar constantes *}
 inicio
    escreval("")
-   pecorrerTabuleiro(OP_PREENCHER)
+   pecorrerTabuleiro(OP_BLOQUEAR)
    pecorrerTabuleiro(OP_MOSTRAR)
    definirStatusDoCampo(5,1,ENTRADA)
    definirStatusDoCampo(5,6,SAIDA)
