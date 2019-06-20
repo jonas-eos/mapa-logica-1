@@ -16,11 +16,10 @@ const
 
 {*----------------------------------------------------------------------------*}
 var
-   tabuleiro : vetor[POSICAO_INICIAL..LINHAS,POSICAO_INICIAL..COLUNAS] de caracter
+   tabuleiro : vetor[POSICAO_INICIAL..POSICAO_FINAL,POSICAO_INICIAL..POSICAO_FINAL] de caracter
    enter : caracter
 
 {*----------------------------------------------------------------------------*}
-{* TODO: Avaliar se pode melhorar este bloco de subrotina *}
 procedimento pecorrerTabuleiro(operacao : inteiro)
 var
    linha, coluna : inteiro
