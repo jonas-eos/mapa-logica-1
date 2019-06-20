@@ -118,20 +118,13 @@ inicio
 fimprocedimento
 
 {*----------------------------------------------------------------------------*}
-{* TODO: Adicionar constantes *}
-{* TODO: Eliminar Código repetido *}
-{* TODO: O código ainda pode ser melhorado *}
 procedimento desenharDivisoria(linha, coluna : inteiro; ultimaDivisoria : logico)
 inicio
-   se(ultimaDivisoria) ou (coluna = 1) entao
-      escreva("|")
-   senao
-      se(campoBloqueado(linha,coluna) ou campoBloqueado(linha,anteriorDe(coluna))) entao
+      se campoBloqueado(linha,coluna) ou campoBloqueado(linha,anteriorDe(coluna)) ou ultimaDivisoria ou ehPrimeira(coluna) entao
          escreva("|")
       senao
          escreva(" ")
       fimse
-   fimse
 fimprocedimento
 
 {* --------------------------------------------------------------------------{*}
