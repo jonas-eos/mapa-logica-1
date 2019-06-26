@@ -258,17 +258,17 @@ inicio
    se (proximaLinha) entao
       desenharLinhas(linha)
       proximaLinha <- falso
-   fimse       // /\ proxima linha
+   fimse       // proxima linha
    desenharDivisoria(linha, coluna, ultimaDivisoria)
    escreva(tabuleiro[linha,coluna])
    se (ehUltima(coluna)) entao
       ultimaDivisoria <- verdadeiro
       desenharDivisoria(linha,coluna, ultimaDivisoria)
       escreval("")
-   fimse       // /\ se for ultima coluna
+   fimse       // se for ultima coluna
    se (ehUltima(linha)) e (ehUltima(coluna)) entao
       desenharLinhas(linha)
-   fimse       // /\ se for ultima linha ou coluna
+   fimse       // se for ultima linha ou coluna
 fimprocedimento
 
 {*----------------------------------------------------------------------------*}
